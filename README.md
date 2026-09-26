@@ -83,6 +83,13 @@ ffmpeg -i source.mov -an -vf "scale=-2:1280" -c:v libx264 -crf 26 -movflags +fas
 ## Liens et hébergement
 
 Les pages se lient entre elles par leur nom de fichier (`stage.html`…), ce qui
-fonctionne partout, y compris en ouvrant les fichiers en local. L'en-tête de
-chaque page est écrit dans chaque fichier : pour ajouter un lien de menu, il
-faut le reporter sur toutes les pages.
+fonctionne partout, y compris en ouvrant les fichiers en local.
+
+**Menu** : chaque page a en en-tête le même menu, qui reprend la hiérarchie
+du site (Galerie → catégories → sous-pages de Stage). Sur ordinateur, la liste
+de la galerie s'ouvre au survol de « Galerie » ou au clic sur la flèche ; sur
+mobile, tout le menu s'ouvre avec le bouton « Menu ». Le menu est écrit dans
+chaque fichier : pour ajouter ou renommer une page, il faut reporter le
+changement sur toutes les pages. Sur chaque page, le lien de la page en cours
+porte `aria-current="page"` et ses rubriques parentes la classe `is-active`
+(affichés en gras). Style : section 22 de `css/style.css`.

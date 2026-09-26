@@ -48,3 +48,44 @@ const videoObserver = new IntersectionObserver((entries) => {
 });
 
 document.querySelectorAll('video').forEach((video) => videoObserver.observe(video));
+
+
+
+// Menu : le bouton « Menu » (mobile) et la flèche à côté de « Galerie »
+// ouvrent ou ferment leur liste (attribut aria-expanded, lu par le CSS).
+// Un clic ailleurs sur la page, sur un lien du menu, ou la touche Échap
+// referme tout.
+
+const menuButtons = document.querySelectorAll('.site-nav__toggle, .submenu-toggle');
+
+function setOpen(button, open) {
+  button.setAttribute('aria-expanded', String(open));
+  if (button.classList.contains('site-nav__toggle')) {
+    button.textContent = open ? 'Fermer' : 'Menu';
+  }
+}
+
+function closeMenus() {
+  menuButtons.forEach((button) => setOpen(button, false));
+}
+
+menuButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    setOpen(button, button.getAttribute('aria-expanded') !== 'true');
+  });
+});
+
+document.addEventListener('click', (event) => {
+  if (!event.target.closest('.site-nav') || event.target.closest('.site-nav a')) closeMenus();
+});
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') closeMenus();
+});
+
+// Liste de la galerie : se referme quand on la quitte au clavier
+document.querySelectorAll('.has-submenu').forEach((item) => {
+  item.addEventListener('focusout', (event) => {
+    if (!item.contains(event.relatedTarget)) setOpen(item.querySelector('.submenu-toggle'), false);
+  });
+});
