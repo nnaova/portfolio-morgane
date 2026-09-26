@@ -1,0 +1,29 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "site",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8801",
+        "--directory",
+        "/home/alexandregiordana/T\u00e9l\u00e9chargements/portfolio-figma-site-source"
+      ],
+      "port": 8801
+    },
+    {
+      "name": "figma-export",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8802",
+        "--directory",
+        "/home/alexandregiordana/T\u00e9l\u00e9chargements/portfolio-figma-site-source/_export-figma"
+      ],
+      "port": 8802
+    }
+  ]
+}

@@ -1,0 +1,959 @@
+/* ==========================================================================
+   Portfolio — Morgane Vautravers
+
+   Commun          1. Polices   2. Variables   3. Base   4. Typographie
+                   5. Mise en page   11. Animation d'apparition
+   Accueil         6. En-tête   7. Présentation   8. Blocs de texte
+                   9. Galerie   10. Centres d'intérêts   12. Mobile
+   Autres pages    13. En-tête et introduction   14. Texte + média
+                   15. Cartes projet   16. Rangées d'images
+                   17. Bandeaux défilants   18. Encadrés et points clés
+                   19. Kits   20. Galerie photo   21. Mobile
+   ========================================================================== */
+
+
+/* 1. Polices — Inter (police variable : toutes les graisses dans un fichier)
+   ========================================================================== */
+
+@font-face {
+  font-family: "Inter";
+  src: url("../assets/fonts/inter-latin-basic.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+  unicode-range: U+0000-00A0, U+00A2-00A9, U+00AC-00AE, U+00B0-00B7, U+00B9-00BA,
+    U+00BC-00BE, U+00D7, U+00F7, U+2000-206F, U+2074, U+20AC, U+2122, U+2190-21BB,
+    U+2212, U+2215, U+F8FF, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("../assets/fonts/inter-latin-ext.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+  unicode-range: U+00A1, U+00AA-00AB, U+00AF, U+00B8, U+00BB, U+00BF-00D6,
+    U+00D8-00F6, U+00F8-00FF, U+0131, U+0152-0153, U+02B0-02FF;
+}
+
+
+/* 2. Variables — modifier ici couleurs, espacements et largeurs
+   ========================================================================== */
+
+:root {
+  --color-bg: #fff;
+  --color-text: #000;
+  --color-text-muted: rgba(0, 0, 0, 0.55);
+  --color-divider: rgba(0, 0, 0, 0.5);
+
+  --font: "Inter", system-ui, sans-serif;
+
+  --page-width: 1280px;   /* largeur maximale du contenu */
+  --gutter: 120px;        /* marge gauche/droite des sections (accueil) */
+  --gutter-wide: 64px;    /* marge gauche/droite des autres pages */
+
+  --radius-image: 16px;
+  --radius-portrait: 30px;
+}
+
+
+/* 3. Base
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font);
+  font-weight: 500;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, p, ul {
+  margin: 0;
+}
+
+/* Les listes servent surtout à la mise en page : pas de puces par défaut */
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+
+/* 4. Typographie
+   ========================================================================== */
+
+.title-xl {
+  font-size: 64px;
+  font-weight: 700;
+  letter-spacing: -1.6px;
+  line-height: 1.1;
+}
+
+.title-lg {
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: -0.72px;
+  line-height: 1.2;
+}
+
+.title-sm {
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.48px;
+  line-height: 1.2;
+}
+
+/* Paragraphes de texte courant (gris) */
+.prose {
+  color: var(--color-text-muted);
+  font-size: 18px;
+  letter-spacing: -0.09px;
+  line-height: 1.45;
+}
+
+.prose--lg {
+  font-size: 24px;
+  letter-spacing: -0.12px;
+}
+
+.prose strong {
+  font-weight: 700;
+}
+
+/* Ajoute une ligne vide au-dessus d'un paragraphe */
+.prose .spaced {
+  margin-top: 1.45em;
+}
+
+
+/* 5. Mise en page
+   ========================================================================== */
+
+.container {
+  width: 100%;
+  max-width: var(--page-width);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* Variante aux marges réduites, utilisée par les pages autres que l'accueil */
+.container--wide {
+  padding-inline: var(--gutter-wide);
+}
+
+.divider {
+  width: calc(100% - 2 * var(--gutter));
+  max-width: calc(var(--page-width) - 2 * var(--gutter));
+  height: 1px;
+  margin: 0 auto;
+  border: 0;
+  background: var(--color-divider);
+}
+
+
+/* 6. En-tête
+   ========================================================================== */
+
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 64px;
+}
+
+.site-header__logo img {
+  width: 96px;
+  height: 100px;
+  object-fit: cover;
+}
+
+.site-nav {
+  display: flex;
+  gap: 32px;
+  font-size: 16px;
+  letter-spacing: -0.08px;
+  line-height: 1.45;
+  white-space: nowrap;
+}
+
+
+/* 7. Présentation (photo + texte d'accroche)
+   ========================================================================== */
+
+.hero {
+  display: flex;
+  align-items: center;
+  gap: 64px;
+  padding-block: 120px;
+}
+
+.hero__photo,
+.hero__text {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.hero__photo {
+  aspect-ratio: 576 / 388;
+  border-radius: var(--radius-portrait);
+  overflow: hidden;
+}
+
+.hero__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.hero__text {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+
+/* 8. Blocs de texte (formation, parcours)
+   ========================================================================== */
+
+.text-block {
+  padding-top: 80px;
+  padding-bottom: 55px;
+}
+
+.text-block--parcours {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-bottom: 41px;
+}
+
+
+/* 9. Galerie
+   ========================================================================== */
+
+.gallery__header {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding-top: 120px;
+  padding-bottom: 37px;
+}
+
+.gallery__header .title-xl {
+  flex: 1;
+}
+
+.gallery__intro {
+  width: 746px;
+  max-width: 100%;
+  color: var(--color-text-muted);
+  font-size: 18px;
+  letter-spacing: -0.09px;
+  line-height: 1.45;
+}
+
+.card-grid {
+  display: grid;
+  gap: 48px;
+  align-items: start;
+}
+
+.card-grid--2 {
+  grid-template-columns: repeat(2, 1fr);
+  margin-bottom: 20px;
+}
+
+.card-grid--3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.card img {
+  width: 100%;
+  aspect-ratio: 315 / 328;
+  object-fit: cover;
+  object-position: var(--pos, center);
+  border-radius: var(--radius-image);
+}
+
+.card-grid--2 .card img {
+  aspect-ratio: 552 / 414;
+}
+
+.card__label {
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.48px;
+  line-height: 1.2;
+}
+
+
+/* 10. Centres d'intérêts
+   ========================================================================== */
+
+.interests {
+  padding-top: 40px;
+  padding-bottom: 50px;
+}
+
+/* La rangée d'images occupe toute la largeur de la page (sans marges) */
+.interests__list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  max-width: var(--page-width);
+  margin: 40px auto 0;
+}
+
+.interest {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.48px;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.interest img {
+  width: 290px;
+  max-width: 100%;
+  aspect-ratio: 290 / 272;
+  object-fit: cover;
+  object-position: var(--pos, center);
+  border-radius: var(--radius-image);
+}
+
+
+/* 11. Animation d'apparition au défilement (voir js/main.js)
+   Les éléments [data-reveal] glissent vers le haut en apparaissant.
+   La classe .js n'est ajoutée que si JavaScript fonctionne : sans JS,
+   tout reste visible.
+   ========================================================================== */
+
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(50px);
+  transition:
+    opacity 0.6s cubic-bezier(0.215, 0.61, 0.355, 1),
+    transform 0.6s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.js [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .js [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+
+/* 12. Tablette et mobile
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  :root {
+    --gutter: 48px;
+    --gutter-wide: 48px;
+  }
+
+  .site-header {
+    padding-inline: var(--gutter);
+  }
+
+  .hero {
+    padding-block: 80px;
+  }
+
+  .gallery__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .card-grid {
+    gap: 32px;
+  }
+
+  .interests__list {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 40px;
+    padding-inline: var(--gutter);
+  }
+}
+
+@media (max-width: 700px) {
+  :root {
+    --gutter: 20px;
+    --gutter-wide: 20px;
+  }
+
+  .site-header__logo img {
+    width: 58px;
+    height: 60px;
+  }
+
+  .site-nav {
+    gap: 16px;
+    font-size: 14px;
+  }
+
+  .hero {
+    flex-direction: column;
+    gap: 32px;
+    padding-block: 48px;
+  }
+
+  .hero__photo,
+  .hero__text {
+    flex: none;
+  }
+
+  .hero__photo {
+    width: 100%;
+    max-width: 320px;
+    aspect-ratio: 3 / 4;
+    margin-inline: auto;
+  }
+
+  .title-xl { font-size: 44px; }
+  .title-lg { font-size: 28px; }
+  .prose--lg { font-size: 20px; }
+
+  .text-block {
+    padding-top: 48px;
+    padding-bottom: 40px;
+  }
+
+  .gallery__header {
+    padding-top: 72px;
+  }
+
+  .card-grid--2,
+  .card-grid--3 {
+    grid-template-columns: 1fr;
+  }
+
+  .interests__list {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ==========================================================================
+   AUTRES PAGES (stage, kit, collection, gouachés, photos…)
+   Les blocs ci-dessous se combinent librement dans le HTML.
+   ========================================================================== */
+
+
+/* 13. En-tête et introduction de page
+   ========================================================================== */
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 64px var(--gutter-wide);
+}
+
+.back-link {
+  color: var(--color-text-muted);
+  font-size: 20px;
+  letter-spacing: -0.1px;
+  line-height: 1.45;
+}
+
+.back-link::before {
+  content: "← ";
+}
+
+.back-link:hover,
+.site-nav a:hover {
+  color: var(--color-text);
+  text-decoration: underline;
+}
+
+.page-intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  padding-block: 56px 80px;
+  text-align: center;
+}
+
+.lead {
+  max-width: 1000px;
+  color: var(--color-text-muted);
+  font-size: 20px;
+  letter-spacing: -0.1px;
+  line-height: 1.45;
+}
+
+/* Petite phrase d'aide soulignée (ex. « Chaque image permet… ») */
+.hint {
+  color: var(--color-text-muted);
+  font-size: 18px;
+  line-height: 1.45;
+  text-align: center;
+  text-decoration: underline;
+}
+
+/* Espacement vertical standard entre deux blocs */
+.section {
+  padding-block: 80px 40px;
+}
+
+.section--spacious {
+  padding-block: 120px;
+}
+
+.section-title {
+  margin-bottom: 48px;
+}
+
+.section-title--right {
+  text-align: right;
+}
+
+/* Titre + texte d'une section (h2 36px + paragraphe gris) */
+.text-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.text-stack p + p {
+  margin-top: 1.45em;
+}
+
+
+/* 14. Texte + média côte à côte
+   L'ordre dans le HTML décide qui est à gauche.
+   ========================================================================== */
+
+.split {
+  display: flex;
+  align-items: center;
+  gap: 64px;
+}
+
+.split > * {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+/* Média étroit au format téléphone (vidéo ou photo verticale) */
+.split > .media--phone {
+  flex: 0 0 243px;
+}
+
+.split > .media--tall {
+  flex: 0 0 389px;
+}
+
+.media-pair {
+  display: flex;
+  justify-content: flex-end;
+  gap: 32px;
+}
+
+/* Image ou vidéo : coins arrondis, recadrage réglable avec
+   --ratio (proportions, ex. 4/3) et --pos (point de cadrage, ex. 50% 20%) */
+.media {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: var(--ratio, auto);
+  object-fit: cover;
+  object-position: var(--pos, center);
+  border-radius: var(--radius-image);
+}
+
+.media--phone {
+  --ratio: 9 / 16;
+  width: 243px;
+}
+
+.media--tall {
+  --ratio: 389 / 672;
+}
+
+.media--contain {
+  object-fit: contain;
+}
+
+/* Grande image pleine largeur */
+.wide-media {
+  margin-block: 40px;
+}
+
+
+/* 15. Cartes projet (image + titre + description)
+   ========================================================================== */
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  align-items: start;
+  padding-block: 40px 120px;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.project-card .media {
+  aspect-ratio: var(--ratio, 352 / 494);
+}
+
+.project-card__title {
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.48px;
+  line-height: 1.2;
+}
+
+.project-card__text {
+  margin-top: 8px;
+  color: var(--color-text-muted);
+  font-size: 18px;
+  letter-spacing: -0.09px;
+  line-height: 1.45;
+}
+
+a.project-card:hover .project-card__title {
+  text-decoration: underline;
+}
+
+
+/* 16. Rangées d'images de même hauteur
+   Chaque image garde ses proportions ; --height règle la hauteur.
+   ========================================================================== */
+
+.media-row {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  padding-block: 20px;
+}
+
+.media-row .media {
+  flex: 0 1 auto;
+  width: auto;
+  min-width: 0;
+  height: var(--height, 494px);
+}
+
+
+/* 17. Bandeaux défilants (voir js/main.js, qui duplique le contenu
+   pour que le défilement boucle sans coupure)
+   ========================================================================== */
+
+.marquee {
+  overflow: hidden;
+  padding-block: 32px;
+}
+
+/* Espacement par marge (et non « gap ») pour que les deux moitiés
+   de la bande soient strictement identiques et que la boucle ne saute pas */
+.marquee__track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll var(--duration, 40s) linear infinite;
+}
+
+.marquee:hover .marquee__track {
+  animation-play-state: paused;
+}
+
+.marquee__track > * {
+  flex: none;
+  margin-right: 16px;
+  width: 305px;
+  height: 410px;
+  object-fit: cover;
+  border-radius: var(--radius-image);
+}
+
+/* Variante : logos des logiciels */
+.marquee--logos .marquee__track {
+  align-items: center;
+}
+
+.marquee--logos .marquee__track > * {
+  margin-right: 64px;
+  width: 72px;
+  height: 72px;
+  border-radius: 0;
+  object-fit: contain;
+}
+
+@keyframes marquee-scroll {
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee {
+    overflow-x: auto;
+  }
+
+  .marquee__track {
+    animation: none;
+  }
+}
+
+
+/* 18. Encadrés et points clés
+   ========================================================================== */
+
+/* Encadré coloré (page Kit) */
+.callout {
+  padding: 32px 52px 48px;
+  border-radius: var(--radius-image);
+  background: rgba(78, 69, 240, 0.17);
+  font-size: 20px;
+  letter-spacing: -0.1px;
+  line-height: 1.45;
+}
+
+.callout p + p,
+.callout p + ul,
+.callout ul + p {
+  margin-top: 1.45em;
+}
+
+.callout ul {
+  padding-left: 1.2em;
+  list-style: "–  ";
+}
+
+/* Colonnes de points clés avec un filet au-dessus */
+.key-points {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 48px;
+  padding-block: 80px;
+}
+
+.key-points li {
+  padding-top: 24px;
+  border-top: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.key-points h2,
+.key-points h3 {
+  margin-bottom: 16px;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.48px;
+  line-height: 1.2;
+}
+
+.key-points p {
+  color: var(--color-text-muted);
+  font-size: 16px;
+  letter-spacing: -0.08px;
+  line-height: 1.45;
+}
+
+.tinted {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.label {
+  color: var(--color-text-muted);
+  font-size: 20px;
+  text-align: center;
+}
+
+
+/* 19. Cartes « produit » de la page Kit (fond gris, vignette encadrée)
+   ========================================================================== */
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  padding-block: 40px 120px;
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 32px 32px 20px;
+  border-radius: var(--radius-image);
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.product-card > div {
+  align-self: stretch;
+}
+
+.product-card img {
+  width: 240px;
+  max-width: 100%;
+  aspect-ratio: 240 / 234;
+  object-fit: cover;
+  object-position: var(--pos, center);
+  border: 8px solid #fff;
+  border-radius: 32px;
+  box-shadow: 0 0 4.4px rgba(0, 0, 0, 0.06), 0 5px 19px rgba(0, 0, 0, 0.08);
+}
+
+
+/* 20. Galerie photo en colonnes (les images gardent leurs proportions)
+   ========================================================================== */
+
+.photo-grid {
+  columns: 2;
+  column-gap: 32px;
+  padding-block: 20px;
+}
+
+.photo-grid .media {
+  margin-bottom: 32px;
+  break-inside: avoid;
+}
+
+
+/* 21. Autres pages — tablette et mobile
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .split {
+    gap: 40px;
+  }
+
+  .project-grid,
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .media-row {
+    flex-wrap: wrap;
+  }
+
+  .media-row .media {
+    height: calc(var(--height, 494px) * 0.7);
+  }
+}
+
+@media (max-width: 700px) {
+  .page-header {
+    padding-block: 32px;
+  }
+
+  .back-link {
+    font-size: 16px;
+  }
+
+  .page-intro {
+    padding-block: 32px 48px;
+  }
+
+  .lead {
+    font-size: 18px;
+  }
+
+  .section {
+    padding-block: 48px 24px;
+  }
+
+  .section--spacious {
+    padding-block: 64px;
+  }
+
+  .split {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 32px;
+  }
+
+  .split > .media--phone,
+  .split > .media--tall {
+    flex: none;
+    width: min(100%, 320px);
+    margin-inline: auto;
+  }
+
+  .media-pair {
+    justify-content: center;
+    gap: 16px;
+  }
+
+  .media-pair .media--phone {
+    width: calc(50% - 8px);
+  }
+
+  .project-grid,
+  .product-grid {
+    grid-template-columns: 1fr;
+    padding-bottom: 64px;
+  }
+
+  .media-row .media {
+    width: 100%;
+    height: auto;
+  }
+
+  .marquee__track > * {
+    width: 220px;
+    height: 296px;
+  }
+
+  .marquee--logos .marquee__track > * {
+    width: 48px;
+    height: 48px;
+  }
+
+  .callout {
+    padding: 24px;
+    font-size: 18px;
+  }
+
+  .photo-grid {
+    columns: 1;
+  }
+}

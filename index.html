@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Portfolio.Vautravers-Morgane</title>
+  <meta name="robots" content="noindex">
+  <meta property="og:title" content="Portfolio.Vautravers-Morgane">
+  <meta property="og:type" content="website">
+
+  <link rel="preload" href="assets/fonts/inter-latin-basic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/style.css">
+  <script>document.documentElement.classList.add('js')</script>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+
+  <!-- ============ En-tête ============ -->
+  <header class="site-header">
+    <a href="./" class="site-header__logo">
+      <img src="assets/images/logo.png" alt="Accueil — Morgane Vautravers" width="96" height="100">
+    </a>
+    <nav class="site-nav">
+      <a href="#galerie">Galerie</a>
+      <a href="#centres-interets">Centres d’intérêts</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ============ Présentation ============ -->
+    <section class="hero container">
+      <div class="hero__photo">
+        <img src="assets/images/portrait.jpg" alt="Portrait de Morgane">
+      </div>
+      <div class="hero__text">
+        <h2 class="title-lg">Hey salut je m’appelle Morgane</h2>
+        <div class="prose prose--lg">
+          <p>Créative, rigoureuse et curieuse, je suis attirée par les métiers qui allient savoir-faire artisanal et sens esthétique.</p>
+          <p>Aujourd'hui, je souhaite donner une dimension concrète et manuelle à ce parcours et recherche un stage en bijouterie, au sein d'un atelier où je pourrai apprendre le métier par la pratique.</p>
+          <p class="spaced"><strong>Dates du stage :</strong> 3 semaines, du lundi 4 janvier au vendredi 22 janvier 2027.</p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- ============ Formation actuelle ============ -->
+    <section class="text-block container" data-reveal>
+      <div class="prose">
+        <p>J'ai récemment intégré un CAP Bijouterie-Joaillerie en un an au sein de la SEPR de Lyon. Cette formation confirme chaque jour ce qui m'attirait vers ce métier : le mélange de technicité, de créativité et de précision.</p>
+        <p>J'y retrouve l'exigence du geste, le sens du détail et la sensibilité artistique qui m'ont donné envie de m'y engager.</p>
+        <p class="spaced">Mon parcours en commerce, gestion et design m'a apporté une vision stratégique autant qu'une sensibilité créative.</p>
+        <p class="spaced">Le CAP me permet aujourd'hui de lui donner une dimension concrète et artisanale. Pour aller plus loin, je recherche un stage en atelier, où je pourrai confronter mes acquis à la réalité du métier, apprendre au contact de professionnels et consolider un projet que je construis avec sérieux et détermination.</p>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- ============ Parcours ============ -->
+    <section class="text-block text-block--parcours container" data-reveal>
+      <h2 class="title-sm">Mon parcours et ce qu’il m’a apporté</h2>
+      <div class="prose">
+        <p>Mon parcours académique m’a permis d’acquérir des compétences variées et complémentaires, utiles pour évoluer dans le secteur de la bijouterie.</p>
+        <p class="spaced">Le <strong>BTS Management Commercial</strong> m’a apporté des bases solides en relation client, techniques de vente, négociation et fidélisation. Ces compétences sont essentielles pour comprendre les attentes des clients, valoriser une création et développer une clientèle.</p>
+        <p class="spaced">La <strong>Licence Économie-Gestion</strong>, parcours performance des entreprises, m’a permis de comprendre le fonctionnement global d’une activité : gestion financière, stratégie, organisation et rentabilité. Ces connaissances sont particulièrement importantes pour gérer un atelier, fixer des prix cohérents et assurer la pérennité d’une activité artisanale.</p>
+        <p class="spaced">Enfin, le <strong>Bachelor en Création et Design Digital</strong> a renforcé ma créativité, mon sens esthétique et ma capacité à valoriser visuellement des créations. Il m’a également permis de développer des compétences en communication et en mise en valeur de produits, notamment sur les supports numériques.</p>
+        <p class="spaced">Enfin, le <strong>CAP Bijouterie-Joaillerie</strong> en un an, que je suis actuellement, vient donner à ce parcours sa dimension technique et manuelle. Cette formation intensive m'apporte les gestes fondamentaux du métier (sciage, limage, soudure, mise en forme...) ainsi que la connaissance des matériaux, la lecture de dessins techniques et les règles de sécurité de l'atelier. Au-delà de la technique, elle me forme à la rigueur, à la précision et à la patience qu'exige le travail à l'établi, et me permet de passer de l'idée à l'objet fini.</p>
+      </div>
+    </section>
+
+    <!-- ============ Galerie ============ -->
+    <section id="galerie" class="gallery container">
+      <header class="gallery__header">
+        <h1 class="title-xl">Galerie</h1>
+        <p class="gallery__intro">Chaque image permet d’accéder à une catégorie et d’explorer les projets associés.</p>
+      </header>
+
+      <!-- Pour recadrer une image : modifier "object-position" via --pos (x y) -->
+      <div class="card-grid card-grid--2" data-reveal>
+        <a href="stage.html" class="card">
+          <img src="assets/images/galerie-stage.jpg" alt="" loading="lazy">
+          <span class="card__label">Stage</span>
+        </a>
+        <a href="gouaches.html" class="card">
+          <img src="assets/images/galerie-gouaches.jpg" alt="" loading="lazy" style="--pos: 50% 72%">
+          <span class="card__label">Gouachés</span>
+        </a>
+      </div>
+
+      <div class="card-grid card-grid--3" data-reveal>
+        <a href="photos.html" class="card">
+          <img src="assets/images/galerie-photos-dessins.jpg" alt="" loading="lazy">
+          <span class="card__label">Galerie photos / dessins</span>
+        </a>
+        <a href="bijoux-perso.html" class="card">
+          <img src="assets/images/galerie-bijoux-perso.jpg" alt="" loading="lazy" style="--pos: 39% 56%">
+          <span class="card__label">Création bijou perso</span>
+        </a>
+        <a href="design.html" class="card">
+          <img src="assets/images/galerie-design-digital.jpg" alt="" loading="lazy" style="--pos: 46% 50%">
+          <span class="card__label">Création et design digital</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ============ Centres d'intérêts ============ -->
+    <section id="centres-interets" class="interests">
+      <div class="container" data-reveal>
+        <h2 class="title-lg">Centre d’intérêts et passion</h2>
+      </div>
+
+      <ul class="interests__list">
+        <li class="interest">
+          <img src="assets/images/interet-photographie.jpg" alt="" loading="lazy" style="--pos: 50% 80%">
+          <span>Photographie</span>
+        </li>
+        <li class="interest">
+          <img src="assets/images/interet-voyages.jpg" alt="" loading="lazy">
+          <span>Voyages</span>
+        </li>
+        <li class="interest">
+          <img src="assets/images/interet-creation.jpg" alt="" loading="lazy" style="--pos: 50% 19%">
+          <span>Création</span>
+        </li>
+        <li class="interest">
+          <img src="assets/images/interet-disney.png" alt="" loading="lazy">
+          <span>Univers Disney</span>
+        </li>
+      </ul>
+    </section>
+
+  </main>
+</body>
+</html>
