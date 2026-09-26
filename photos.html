@@ -17,66 +17,130 @@
     <nav class="site-nav"><a href="contact.html">Contact</a></nav>
   </header>
 
-  <main class="container container--wide">
+  <main>
 
-    <section class="page-intro">
+    <section class="page-intro container container--wide">
       <h1 class="title-xl">Galerie photo</h1>
-      <p class="lead">Galerie variée mêlant paysages, portraits, objets, architecture, fleurs, animaux, univers Disney et bijoux, offrant un aperçu de mon regard et de mes inspirations.</p>
-      <img class="media" src="assets/images/photos-couverture.jpg" alt="Homme face à la mer depuis une falaise">
+      <p class="lead lead--photo" style="--w: 988px; --fs: 24px">Galerie variée mêlant paysages, portraits, objets, architecture, fleurs, animaux, univers Disney et bijoux, offrant un aperçu de mon regard et de mes inspirations.</p>
     </section>
 
-    <!-- Les photos se répartissent automatiquement sur 2 colonnes.
-         Pour en ajouter une, copier une ligne <img> et changer le fichier. -->
-    <div class="photo-grid">
-      <img class="media" src="assets/images/photo-01.jpg" alt="" loading="lazy">
-      <img class="media" src="assets/images/photo-02.jpg" alt="" loading="lazy">
-      <img class="media" src="assets/images/photo-03.jpg" alt="" loading="lazy">
-      <img class="media" src="assets/images/photo-04.jpg" alt="" loading="lazy">
-      <img class="media" src="assets/images/photo-05.jpg" alt="" loading="lazy">
-      <img class="media" src="assets/images/photo-06.jpg" alt="" loading="lazy">
-      <img class="media" src="assets/images/photo-07.jpg" alt="" loading="lazy">
-      <img class="media" src="assets/images/photo-08.jpg" alt="" loading="lazy">
-      <img class="media" src="assets/images/photo-09.jpg" alt="" loading="lazy">
-      <img class="media" src="assets/images/photo-10.jpg" alt="" loading="lazy">
-      <img class="media" src="assets/images/photo-11.jpg" alt="" loading="lazy">
-      <img class="media" src="assets/images/photo-12.jpg" alt="" loading="lazy">
-      <img class="media" src="assets/images/photo-13.jpg" alt="" loading="lazy">
-      <img class="media" src="assets/images/photo-14.jpg" alt="" loading="lazy">
-      <img class="media" src="assets/images/photo-15.jpg" alt="" loading="lazy">
-      <img class="media" src="assets/images/photo-16.jpg" alt="" loading="lazy">
-      <img class="media" src="assets/images/photo-17.jpg" alt="" loading="lazy">
-      <img class="media" src="assets/images/photo-18.jpg" alt="" loading="lazy">
-      <img class="media" src="assets/images/photo-19.jpg" alt="" loading="lazy">
-      <img class="media" src="assets/images/photo-20.jpg" alt="" loading="lazy">
+    <img class="media media--contain" src="assets/images/photos-couverture.jpg" alt="Homme face à la mer depuis une falaise" style="--ratio: 1404 / 878">
+
+    <!-- Galerie : chaque rangée contient deux colonnes de deux photos.
+         La colonne de droite (photo-col--offset) est décalée de 20 px vers le bas.
+         --ratio donne les proportions de chaque photo, --pos son cadrage. -->
+    <div class="container container--wide">
+
+      <div class="photo-row">
+        <div class="photo-col">
+          <img class="media" src="assets/images/photo-01.jpg" alt="" loading="lazy" style="--ratio: 560 / 548; --pos: 50% 90%">
+          <img class="media" src="assets/images/photo-02.jpg" alt="" loading="lazy" style="--ratio: 560 / 390">
+        </div>
+        <div class="photo-col photo-col--offset">
+          <img class="media" src="assets/images/photo-03.jpg" alt="" loading="lazy" style="--ratio: 560 / 390">
+          <img class="media" src="assets/images/photo-04.jpg" alt="" loading="lazy" style="--ratio: 560 / 501">
+        </div>
+      </div>
+
+      <div class="photo-row">
+        <div class="photo-col">
+          <img class="media" src="assets/images/photo-05.jpg" alt="" loading="lazy" style="--ratio: 560 / 548; --pos: 50% 90%">
+          <img class="media" src="assets/images/photo-06.jpg" alt="" loading="lazy" style="--ratio: 560 / 390">
+        </div>
+        <div class="photo-col photo-col--offset">
+          <img class="media" src="assets/images/photo-07.jpg" alt="" loading="lazy" style="--ratio: 560 / 390">
+          <img class="media" src="assets/images/photo-08.jpg" alt="" loading="lazy" style="--ratio: 560 / 501">
+        </div>
+      </div>
+
+      <div class="photo-row">
+        <div class="photo-col">
+          <img class="media" src="assets/images/photo-09.jpg" alt="" loading="lazy" style="--ratio: 560 / 548">
+          <img class="media" src="assets/images/photo-10.jpg" alt="" loading="lazy" style="--ratio: 560 / 390">
+        </div>
+        <div class="photo-col photo-col--offset">
+          <img class="media" src="assets/images/photo-11.jpg" alt="" loading="lazy" style="--ratio: 560 / 390; --pos: 50% 83%">
+          <img class="media" src="assets/images/photo-12.jpg" alt="" loading="lazy" style="--ratio: 560 / 501">
+        </div>
+      </div>
+
+      <div class="photo-row">
+        <div class="photo-col">
+          <img class="media" src="assets/images/photo-13.jpg" alt="" loading="lazy" style="--ratio: 560 / 548">
+          <img class="media" src="assets/images/photo-14.jpg" alt="" loading="lazy" style="--ratio: 560 / 390">
+        </div>
+        <div class="photo-col photo-col--offset">
+          <img class="media" src="assets/images/photo-15.jpg" alt="" loading="lazy" style="--ratio: 560 / 390">
+          <img class="media" src="assets/images/photo-16.jpg" alt="" loading="lazy" style="--ratio: 560 / 547; --pos: 50% 92%">
+        </div>
+      </div>
+
+      <div class="photo-row" style="--pt: 15px; --pb: 29px">
+        <div class="photo-col">
+          <img class="media" src="assets/images/photo-17.jpg" alt="" loading="lazy" style="--ratio: 560 / 664; --pos: 50% 95%">
+          <img class="media" src="assets/images/photo-18.jpg" alt="" loading="lazy" style="--ratio: 560 / 390">
+        </div>
+        <div class="photo-col photo-col--offset">
+          <img class="media" src="assets/images/photo-19.jpg" alt="" loading="lazy" style="--ratio: 560 / 390">
+          <img class="media" src="assets/images/photo-20.jpg" alt="" loading="lazy" style="--ratio: 560 / 629">
+        </div>
+      </div>
+
+      <!-- Bloc de trois colonnes -->
+      <div class="photo-row" style="--pt: 0px; --pb: 0px">
+        <div class="photo-col">
+          <img class="media" src="assets/images/photo-21.jpg" alt="" loading="lazy" style="--ratio: 358 / 405">
+          <img class="media" src="assets/images/photo-22.jpg" alt="" loading="lazy" style="--ratio: 358 / 472; --pos: 50% 34%">
+        </div>
+        <div class="photo-col">
+          <img class="media" src="assets/images/photo-23.jpg" alt="" loading="lazy" style="--ratio: 358 / 296; --pos: 50% 34%">
+          <img class="media" src="assets/images/photo-24.jpg" alt="" loading="lazy" style="--ratio: 358 / 586">
+        </div>
+        <div class="photo-col">
+          <img class="media" src="assets/images/photo-25.jpg" alt="" loading="lazy" style="--ratio: 358 / 590">
+          <img class="media" src="assets/images/photo-26.jpg" alt="" loading="lazy" style="--ratio: 358 / 289; --pos: 50% 57%">
+        </div>
+      </div>
+
+      <ul class="key-points key-points--semibold" data-reveal>
+        <li>
+          <h2>Mon style photographique</h2>
+          <p>Mon travail photographique se caractérise par une grande diversité de sujets et d’univers.</p>
+          <p>J’aime explorer différents cadrages, textures et ambiances, en jouant avec la lumière et les couleurs pour capturer l’essence de chaque sujet. Mon style est à la fois curieux, spontané et narratif, cherchant à raconter une histoire ou à transmettre une émotion à travers chaque image, tout en gardant une cohérence visuelle qui reflète mon regard et mon univers.</p>
+        </li>
+        <li>
+          <h2>Pourquoi j’aime la photographie</h2>
+          <p>La photographie me permet de regarder le monde avec attention et sensibilité, de m’arrêter sur des détails qui pourraient autrement passer inaperçus. C’est un moyen de créer, d’expérimenter et de partager mon regard avec les autres. Chaque photo est un exercice de composition, de lumière et de mise en scène, qui nourrit ma créativité et enrichit ma pratique artistique, que ce soit pour documenter mes créations ou pour développer mon univers visuel personnel. Cela m’apporte également une liberté d’expression, en me permettant de capturer des instants uniques et de les transformer en images chargées de sens et d’émotion.</p>
+        </li>
+      </ul>
+
+      <!-- ============ Dessins sur photographies ============ -->
+      <section class="page-intro" style="--pb: 53px">
+        <h2 class="title-xl">Dessins sur photographies</h2>
+        <p class="lead lead--photo" style="--w: 742px; --fs: 24px">Au niveau du dessin sur mes photos, je laisse libre cours à mon imagination. Ils ont été réalisés sur tablette (Procreate).</p>
+      </section>
+
+      <div class="photo-row" style="--pt: 0px; --pb: 0px">
+        <div class="photo-col">
+          <img class="media" src="assets/images/dessin-01.jpg" alt="" loading="lazy" style="--ratio: 560 / 721; --pos: 50% 20%">
+          <img class="media" src="assets/images/dessin-02.jpg" alt="" loading="lazy" style="--ratio: 560 / 772">
+        </div>
+        <div class="photo-col photo-col--loose">
+          <img class="media" src="assets/images/dessin-03.jpg" alt="" loading="lazy" style="--ratio: 560 / 792">
+          <img class="media" src="assets/images/dessin-04.jpg" alt="" loading="lazy" style="--ratio: 560 / 666">
+        </div>
+      </div>
+
+      <div class="photo-row" style="--pt: 0px; --pb: 30px; --align: flex-end">
+        <div class="photo-col">
+          <img class="media" src="assets/images/dessin-05.jpg" alt="" loading="lazy" style="--ratio: 553 / 738">
+        </div>
+        <div class="photo-col">
+          <img class="media" src="assets/images/dessin-06.jpg" alt="" loading="lazy" style="--ratio: 560 / 772">
+        </div>
+      </div>
+
     </div>
-
-    <ul class="key-points" data-reveal>
-      <li>
-        <h2>Mon style photographique</h2>
-        <p>Mon travail photographique se caractérise par une grande diversité de sujets et d’univers.<br>
-          J’aime explorer différents cadrages, textures et ambiances, en jouant avec la lumière et les couleurs pour capturer l’essence de chaque sujet. Mon style est à la fois curieux, spontané et narratif, cherchant à raconter une histoire ou à transmettre une émotion à travers chaque image, tout en gardant une cohérence visuelle qui reflète mon regard et mon univers.</p>
-      </li>
-      <li>
-        <h2>Pourquoi j’aime la photographie</h2>
-        <p>La photographie me permet de regarder le monde avec attention et sensibilité, de m’arrêter sur des détails qui pourraient autrement passer inaperçus. C’est un moyen de créer, d’expérimenter et de partager mon regard avec les autres. Chaque photo est un exercice de composition, de lumière et de mise en scène, qui nourrit ma créativité et enrichit ma pratique artistique, que ce soit pour documenter mes créations ou pour développer mon univers visuel personnel. Cela m’apporte également une liberté d’expression, en me permettant de capturer des instants uniques et de les transformer en images chargées de sens et d’émotion.</p>
-      </li>
-    </ul>
-
-    <!-- ============ Dessins sur photographies ============ -->
-    <section class="page-intro">
-      <h2 class="title-xl">Dessins sur photographies</h2>
-      <p class="lead">Au niveau du dessin sur mes photos, je laisse libre cours à mon imagination. Ils ont été réalisés sur tablette (Procreate).</p>
-    </section>
-
-    <div class="photo-grid section--spacious" style="padding-top: 0">
-      <img class="media" src="assets/images/dessin-01.jpg" alt="" loading="lazy">
-      <img class="media" src="assets/images/dessin-02.jpg" alt="" loading="lazy">
-      <img class="media" src="assets/images/dessin-05.jpg" alt="" loading="lazy">
-      <img class="media" src="assets/images/dessin-03.jpg" alt="" loading="lazy">
-      <img class="media" src="assets/images/dessin-04.jpg" alt="" loading="lazy">
-      <img class="media" src="assets/images/dessin-06.jpg" alt="" loading="lazy">
-    </div>
-
   </main>
 </body>
 </html>

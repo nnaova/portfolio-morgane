@@ -39,10 +39,16 @@ Puis ouvrir http://localhost:8000. (Ouvrir directement `index.html` fonctionne a
 Chaque section est précédée d'un commentaire (`<!-- ===== Galerie ===== -->`).
 
 **Une image** : déposer le fichier dans `assets/images/` et changer le `src`.
-Pour ajuster le cadrage, deux réglages possibles dans l'attribut `style` :
+Les dimensions reprennent celles de la maquette Figma ; elles se règlent dans
+l'attribut `style` de l'image :
 
+- `--ratio: 352 / 494` → proportions du cadre
 - `--pos: 50% 20%` → point de cadrage (horizontal puis vertical)
-- `--ratio: 4 / 3` → proportions imposées (sinon l'image garde les siennes)
+- `--w: 243px` → largeur fixe (rangées d'images, visuels « is-fixed »)
+
+**Espacements** : chaque bloc accepte `--pt` (espace au-dessus) et `--pb`
+(espace en dessous), par exemple `style="--pt: 40px; --pb: 80px"`. Sans
+réglage, le bloc prend la valeur la plus courante de la maquette.
 
 **Blocs réutilisables** (copier-coller un bloc existant puis changer le contenu) :
 
@@ -51,13 +57,16 @@ Pour ajuster le cadrage, deux réglages possibles dans l'attribut `style` :
 | Titre + texte d'introduction centré | `page-intro` | toutes les pages |
 | Texte à côté d'une image ou vidéo | `split` | design.html |
 | Trois cartes image + titre + texte | `project-grid` / `project-card` | bijoux-perso.html |
-| Rangée d'images de même hauteur | `media-row` | gouaches.html |
+| Rangée d'images centrées | `media-row` | gouaches.html |
 | Bandeau défilant d'images | `marquee` | collection.html |
 | Colonnes de points clés | `key-points` | photos.html |
-| Galerie photo sur 2 colonnes | `photo-grid` | photos.html |
+| Rangée de colonnes de photos | `photo-row` / `photo-col` | photos.html |
 
 Dans un bandeau défilant, chaque image n'est écrite qu'une fois : le script
 la duplique automatiquement. `--duration` règle la vitesse (plus grand = plus lent).
+
+Certaines images ont été recadrées directement dans le fichier pour reproduire
+le zoom de la maquette (gouachés, bijoux perso, affiches de la page Design).
 
 **Une vidéo** : `<video class="media" src="…" muted loop playsinline preload="metadata"></video>`.
 Elle se lance toute seule quand elle apparaît à l'écran. Pour convertir une

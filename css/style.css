@@ -46,7 +46,7 @@
 
   --font: "Inter", system-ui, sans-serif;
 
-  --page-width: 1280px;   /* largeur maximale du contenu */
+  --page-width: 100%;   /* largeur maximale du contenu */
   --gutter: 120px;        /* marge gauche/droite des sections (accueil) */
   --gutter-wide: 64px;    /* marge gauche/droite des autres pages */
 
@@ -161,9 +161,10 @@ a {
   padding-inline: var(--gutter-wide);
 }
 
+/* Ligne de séparation de 1040 px, centrée */
 .divider {
-  width: calc(100% - 2 * var(--gutter));
-  max-width: calc(var(--page-width) - 2 * var(--gutter));
+  width: 1040px;
+  max-width: calc(100% - 2 * var(--gutter-wide));
   height: 1px;
   margin: 0 auto;
   border: 0;
@@ -251,10 +252,13 @@ a {
 /* 9. Galerie
    ========================================================================== */
 
+/* Comme dans la maquette, cet en-tête occupe 1280 px (marges de 120 px
+   comprises) et déborde donc légèrement de la zone de contenu */
 .gallery__header {
   display: flex;
   align-items: center;
-  gap: 24px;
+  width: 1040px;
+  margin-inline: calc((100% - 1040px) / 2);
   padding-top: 120px;
   padding-bottom: 37px;
 }
@@ -275,7 +279,7 @@ a {
 .card-grid {
   display: grid;
   gap: 48px;
-  align-items: start;
+  align-items: center;
 }
 
 .card-grid--2 {
@@ -290,12 +294,13 @@ a {
 .card {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 5px;
 }
 
 .card img {
   width: 100%;
-  aspect-ratio: 315 / 328;
+  aspect-ratio: var(--ratio, 315 / 328);
   object-fit: cover;
   object-position: var(--pos, center);
   border-radius: var(--radius-image);
@@ -404,6 +409,9 @@ a {
   .gallery__header {
     flex-direction: column;
     align-items: flex-start;
+    gap: 24px;
+    width: auto;
+    margin-inline: 0;
   }
 
   .card-grid {
@@ -475,9 +483,17 @@ a {
 }
 
 
+
+
 /* ==========================================================================
    AUTRES PAGES (stage, kit, collection, gouachés, photos…)
-   Les blocs ci-dessous se combinent librement dans le HTML.
+
+   Les dimensions reprennent la maquette Figma (page de 1280 px de large).
+   Espacements : la plupart des blocs acceptent deux réglages, écrits
+   directement dans le HTML avec style="…" :
+     --pt  espace au-dessus du bloc     --pb  espace en dessous
+   Images : --ratio (proportions, ex. 352 / 494), --pos (point de cadrage)
+   et --w (largeur fixe, ex. 243px).
    ========================================================================== */
 
 
@@ -498,10 +514,6 @@ a {
   line-height: 1.45;
 }
 
-.back-link::before {
-  content: "← ";
-}
-
 .back-link:hover,
 .site-nav a:hover {
   color: var(--color-text);
@@ -512,54 +524,74 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 32px;
-  padding-block: 56px 80px;
+  gap: var(--gap, 48px);
+  padding-top: var(--pt, 120px);
+  padding-bottom: var(--pb, 120px);
   text-align: center;
 }
 
+.page-intro > .title-xl {
+  width: 100%;
+}
+
+/* Texte d'introduction : --w règle sa largeur, --fs sa taille */
 .lead {
-  max-width: 1000px;
+  width: var(--w, 100%);
+  max-width: 100%;
   color: var(--color-text-muted);
-  font-size: 20px;
+  font-size: var(--fs, 20px);
   letter-spacing: -0.1px;
   line-height: 1.45;
 }
 
-/* Petite phrase d'aide soulignée (ex. « Chaque image permet… ») */
+/* Variante de la page Photos : plus grande, plus foncée, alignée à gauche */
+.lead--photo {
+  color: rgba(0, 0, 0, 0.7);
+  letter-spacing: -0.12px;
+  text-align: left;
+}
+
+/* Petite phrase d'aide soulignée (page Stage) */
 .hint {
+  width: 708px;
+  max-width: 100%;
+  margin-inline: auto;
+  padding-top: var(--pt, 80px);
+  padding-bottom: var(--pb, 40px);
   color: var(--color-text-muted);
   font-size: 18px;
+  letter-spacing: -0.09px;
   line-height: 1.45;
-  text-align: center;
   text-decoration: underline;
 }
 
-/* Espacement vertical standard entre deux blocs */
+/* Bloc générique */
 .section {
-  padding-block: 80px 40px;
+  padding-top: var(--pt, 80px);
+  padding-bottom: var(--pb, 40px);
 }
 
-.section--spacious {
-  padding-block: 120px;
-}
-
+/* Grand titre de partie (« Création digital », « Contenu vidéo ») */
 .section-title {
-  margin-bottom: 48px;
+  padding-top: var(--pt, 120px);
+  padding-bottom: var(--pb, 80px);
 }
 
 .section-title--right {
   text-align: right;
 }
 
-/* Titre + texte d'une section (h2 36px + paragraphe gris) */
+/* Titre + texte (h2 36px + paragraphe gris) */
 .text-stack {
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
 
-.text-stack p + p {
-  margin-top: 1.45em;
+/* Zone de texte de 1152 px, un peu plus large que les autres blocs */
+.container--1152 {
+  width: min(1152px, 100% - 40px);
+  margin-inline: auto;
 }
 
 
@@ -578,23 +610,19 @@ a {
   min-width: 0;
 }
 
-/* Média étroit au format téléphone (vidéo ou photo verticale) */
-.split > .media--phone {
-  flex: 0 0 243px;
+/* Colonne alignée en haut plutôt que centrée */
+.split--top {
+  align-items: flex-start;
 }
 
-.split > .media--tall {
-  flex: 0 0 389px;
-}
-
-.media-pair {
-  display: flex;
-  justify-content: flex-end;
-  gap: 32px;
+/* Élément de largeur fixe (--w) dans une rangée */
+.split > .is-fixed {
+  flex: 0 0 var(--w);
+  width: var(--w);
 }
 
 /* Image ou vidéo : coins arrondis, recadrage réglable avec
-   --ratio (proportions, ex. 4/3) et --pos (point de cadrage, ex. 50% 20%) */
+   --ratio (proportions) et --pos (point de cadrage, ex. 50% 20%) */
 .media {
   display: block;
   width: 100%;
@@ -605,34 +633,45 @@ a {
   border-radius: var(--radius-image);
 }
 
-.media--phone {
-  --ratio: 9 / 16;
-  width: 243px;
-}
-
-.media--tall {
-  --ratio: 389 / 672;
-}
-
 .media--contain {
   object-fit: contain;
 }
 
-/* Grande image pleine largeur */
-.wide-media {
-  margin-block: 40px;
+/* Visuel qui dépasse de 154 px sous sa rangée (affiche de la page Design) */
+.media--overhang {
+  margin-bottom: -154px;
+}
+
+/* Format téléphone (243 × 432), sans arrondi */
+.media--phone {
+  --w: 243px;
+  --ratio: 243 / 432;
+  border-radius: 0;
 }
 
 
 /* 15. Cartes projet (image + titre + description)
+   Colonnes de la maquette : 352 px, une colonne élastique, 352 px.
    ========================================================================== */
 
 .project-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 352px 1fr 352px;
   gap: 32px;
   align-items: start;
-  padding-block: 40px 120px;
+  padding-top: var(--pt, 120px);
+  padding-bottom: var(--pb, 120px);
+}
+
+/* La colonne élastique est la première */
+.project-grid--first-wide {
+  grid-template-columns: 1fr 352px 352px;
+}
+
+/* Trois colonnes identiques de 352 px, groupées au centre de la page */
+.project-grid--equal {
+  grid-template-columns: repeat(3, 352px);
+  justify-content: center;
 }
 
 .project-card {
@@ -643,6 +682,11 @@ a {
 
 .project-card .media {
   aspect-ratio: var(--ratio, 352 / 494);
+}
+
+.project-grid:not(.project-grid--first-wide, .project-grid--equal) > :nth-child(2) .media,
+.project-grid--first-wide > :first-child .media {
+  --ratio: 372 / 495;
 }
 
 .project-card__title {
@@ -665,22 +709,23 @@ a.project-card:hover .project-card__title {
 }
 
 
-/* 16. Rangées d'images de même hauteur
-   Chaque image garde ses proportions ; --height règle la hauteur.
+/* 16. Rangées d'images centrées
+   Chaque image précise sa largeur (--w) et ses proportions (--ratio).
    ========================================================================== */
 
 .media-row {
   display: flex;
   justify-content: center;
+  align-items: var(--align, center);
   gap: 32px;
-  padding-block: 20px;
+  padding-top: var(--pt, 0px);
+  padding-bottom: var(--pb, 0px);
 }
 
 .media-row .media {
-  flex: 0 1 auto;
-  width: auto;
+  flex: 0 1 var(--w);
+  width: var(--w);
   min-width: 0;
-  height: var(--height, 494px);
 }
 
 
@@ -711,10 +756,15 @@ a.project-card:hover .project-card__title {
   width: 305px;
   height: 410px;
   object-fit: cover;
+  object-position: var(--pos, center);
   border-radius: var(--radius-image);
 }
 
-/* Variante : logos des logiciels */
+/* Variante : logos des logiciels (bande de 84 px de haut) */
+.marquee--logos {
+  padding-block: 6px;
+}
+
 .marquee--logos .marquee__track {
   align-items: center;
 }
@@ -745,9 +795,11 @@ a.project-card:hover .project-card__title {
 /* 18. Encadrés et points clés
    ========================================================================== */
 
-/* Encadré coloré (page Kit) */
+/* Encadré coloré de 1152 px (page Kit) */
 .callout {
-  padding: 32px 52px 48px;
+  width: min(1152px, 100% - 40px);
+  margin-inline: auto;
+  padding: 31px 52px 47px;
   border-radius: var(--radius-image);
   background: rgba(78, 69, 240, 0.17);
   font-size: 20px;
@@ -755,15 +807,13 @@ a.project-card:hover .project-card__title {
   line-height: 1.45;
 }
 
-.callout p + p,
-.callout p + ul,
-.callout ul + p {
+.callout .spaced {
   margin-top: 1.45em;
 }
 
-.callout ul {
-  padding-left: 1.2em;
-  list-style: "–  ";
+.callout li::before {
+  content: "-  ";
+  white-space: pre;
 }
 
 /* Colonnes de points clés avec un filet au-dessus */
@@ -771,7 +821,8 @@ a.project-card:hover .project-card__title {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 48px;
-  padding-block: 80px;
+  padding-top: var(--pt, 120px);
+  padding-bottom: var(--pb, 120px);
 }
 
 .key-points li {
@@ -779,13 +830,22 @@ a.project-card:hover .project-card__title {
   border-top: 1px solid rgba(0, 0, 0, 0.15);
 }
 
-.key-points h2,
-.key-points h3 {
+.key-points h2 {
   margin-bottom: 16px;
   font-size: 24px;
   font-weight: 700;
   letter-spacing: -0.48px;
-  line-height: 1.2;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* Variante de la page Photos : titres moins gras, interligne plus aéré */
+.key-points--semibold h2 {
+  font-weight: 600;
+}
+
+.key-points.key-points--semibold p {
+  line-height: 1.5;
 }
 
 .key-points p {
@@ -802,6 +862,8 @@ a.project-card:hover .project-card__title {
 .label {
   color: var(--color-text-muted);
   font-size: 20px;
+  letter-spacing: -0.1px;
+  line-height: 1.45;
   text-align: center;
 }
 
@@ -813,22 +875,33 @@ a.project-card:hover .project-card__title {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 32px;
-  padding-block: 40px 120px;
+  padding-top: var(--pt, 0px);
+  padding-bottom: var(--pb, 120px);
 }
 
+/* Le texte et la vignette sont calés en bas de la carte */
 .product-card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 32px 32px 20px;
+  justify-content: flex-end;
+  padding-block: 20px;
   border-radius: var(--radius-image);
   background: rgba(0, 0, 0, 0.05);
 }
 
 .product-card > div {
   align-self: stretch;
+  padding: 32px;
+}
+
+/* Variante : zone de texte de hauteur fixe, texte centré verticalement */
+.product-grid--fixed-text .product-card > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 165px;
+  padding-block: 0;
 }
 
 .product-card img {
@@ -843,18 +916,34 @@ a.project-card:hover .project-card__title {
 }
 
 
-/* 20. Galerie photo en colonnes (les images gardent leurs proportions)
+/* 20. Galerie photo : rangées de colonnes (page Photos)
+   Chaque image précise ses proportions avec --ratio.
    ========================================================================== */
 
-.photo-grid {
-  columns: 2;
-  column-gap: 32px;
-  padding-block: 20px;
+.photo-row {
+  display: flex;
+  align-items: var(--align, flex-start);
+  gap: 32px;
+  padding-top: var(--pt, 10px);
+  padding-bottom: var(--pb, 10px);
 }
 
-.photo-grid .media {
-  margin-bottom: 32px;
-  break-inside: avoid;
+.photo-col {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  gap: 32px;
+  min-width: 0;
+}
+
+/* Colonne décalée de 20 px vers le bas, images plus espacées */
+.photo-col--offset {
+  padding-top: 20px;
+  gap: 47px;
+}
+
+.photo-col--loose {
+  gap: 47px;
 }
 
 
@@ -867,16 +956,21 @@ a.project-card:hover .project-card__title {
   }
 
   .project-grid,
+  .project-grid--first-wide,
+  .project-grid--equal {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .project-grid .media {
+    --ratio: 352 / 494;
+  }
+
   .product-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
   .media-row {
     flex-wrap: wrap;
-  }
-
-  .media-row .media {
-    height: calc(var(--height, 494px) * 0.7);
   }
 }
 
@@ -891,18 +985,20 @@ a.project-card:hover .project-card__title {
 
   .page-intro {
     padding-block: 32px 48px;
+    gap: 24px;
   }
 
   .lead {
     font-size: 18px;
   }
 
-  .section {
-    padding-block: 48px 24px;
+  .hint {
+    padding-block: 24px;
   }
 
-  .section--spacious {
-    padding-block: 64px;
+  .section,
+  .section-title {
+    padding-block: 48px 24px;
   }
 
   .split {
@@ -911,31 +1007,33 @@ a.project-card:hover .project-card__title {
     gap: 32px;
   }
 
-  .split > .media--phone,
-  .split > .media--tall {
+  .split > .is-fixed {
     flex: none;
     width: min(100%, 320px);
     margin-inline: auto;
   }
 
-  .media-pair {
-    justify-content: center;
-    gap: 16px;
-  }
-
-  .media-pair .media--phone {
-    width: calc(50% - 8px);
+  .media--overhang {
+    margin-bottom: 0;
   }
 
   .project-grid,
+  .project-grid--first-wide,
+  .project-grid--equal,
   .product-grid {
     grid-template-columns: 1fr;
-    padding-bottom: 64px;
+    padding-block: 32px 64px;
+  }
+
+  .media-row {
+    flex-direction: column;
+    align-items: stretch;
+    padding-block: 16px;
   }
 
   .media-row .media {
+    flex: none;
     width: 100%;
-    height: auto;
   }
 
   .marquee__track > * {
@@ -953,7 +1051,23 @@ a.project-card:hover .project-card__title {
     font-size: 18px;
   }
 
-  .photo-grid {
-    columns: 1;
+  .key-points {
+    padding-block: 48px;
+  }
+
+  .key-points h2 {
+    white-space: normal;
+  }
+
+  .photo-row {
+    flex-direction: column;
+    gap: 16px;
+    padding-block: 8px;
+  }
+
+  .photo-col,
+  .photo-col--offset {
+    padding-top: 0;
+    gap: 16px;
   }
 }
