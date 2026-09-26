@@ -18,7 +18,8 @@ design.html                 → Création et design digital
 contact.html                → Contact (CV)
 
 css/style.css               → toute la mise en forme (sections numérotées, sommaire en haut)
-js/main.js                  → animations d'apparition, bandeaux défilants, lecture des vidéos
+js/main.js                  → animations d'apparition, bandeaux défilants, lecture des vidéos,
+                              menu, retour à la position de lecture après « Précédent »
 assets/images/              → images, nommées par page (kit-…, collection-…, photo-…)
 assets/videos/              → vidéos (MP4 H.264, sans son)
 assets/fonts/               → police Inter

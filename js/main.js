@@ -89,3 +89,44 @@ document.querySelectorAll('.has-submenu').forEach((item) => {
     if (!item.contains(event.relatedTarget)) setOpen(item.querySelector('.submenu-toggle'), false);
   });
 });
+
+
+// Retour en arrière (ou rechargement) : la page revient à l'endroit où l'on
+// était, plutôt qu'en haut. La position est notée en quittant la page, puis
+// réappliquée à l'arrivée et une fois les images chargées (la page n'a sa
+// hauteur définitive qu'à ce moment-là). Si l'on fait défiler entre-temps,
+// on ne bouge plus la page.
+
+const scrollKey = 'scroll:' + location.pathname;
+
+history.scrollRestoration = 'manual';
+
+addEventListener('pagehide', () => {
+  try { sessionStorage.setItem(scrollKey, String(scrollY)); } catch {}
+});
+
+function savedScroll() {
+  const navigation = performance.getEntriesByType('navigation')[0];
+  if (!navigation || !['back_forward', 'reload'].includes(navigation.type)) return 0;
+  try { return Number(sessionStorage.getItem(scrollKey)) || 0; } catch { return 0; }
+}
+
+const scrollTarget = savedScroll();
+
+if (scrollTarget) {
+  let userScrolled = false;
+  const stop = () => { userScrolled = true; };
+  ['wheel', 'touchstart', 'keydown'].forEach((type) => addEventListener(type, stop, { once: true, passive: true }));
+
+  const restore = () => {
+    if (userScrolled) return;
+    // Saut direct, sans le défilement doux défini dans le CSS
+    const root = document.documentElement;
+    root.style.scrollBehavior = 'auto';
+    scrollTo(0, scrollTarget);
+    root.style.scrollBehavior = '';
+  };
+
+  restore();
+  addEventListener('load', restore);
+}
