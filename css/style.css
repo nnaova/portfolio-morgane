@@ -1264,3 +1264,38 @@ html:not(.js) .has-submenu:focus-within > .submenu {
     box-shadow: none;
   }
 }
+
+
+/* Pied de page et pages légales
+   ========================================================================== */
+
+.site-footer {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  padding: 40px var(--gutter-wide);
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
+
+.site-footer a:hover {
+  color: var(--color-text);
+  text-decoration: underline;
+}
+
+.legal {
+  width: min(800px, 100%);
+  margin-inline: auto;
+  padding-bottom: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.legal .title-sm {
+  margin-top: 24px;
+}
+
+.legal a {
+  text-decoration: underline;
+}

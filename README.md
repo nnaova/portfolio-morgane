@@ -16,6 +16,8 @@ photos.html                 → Galerie photo + dessins sur photos
 bijoux-perso.html           → Création de bijoux perso
 design.html                 → Création et design digital
 contact.html                → Contact (CV)
+mentions-legales.html       → Mentions légales (à compléter)
+confidentialite.html        → Politique de confidentialité
 
 css/style.css               → toute la mise en forme (sections numérotées, sommaire en haut)
 js/main.js                  → animations d'apparition, bandeaux défilants, lecture des vidéos,
@@ -23,7 +25,6 @@ js/main.js                  → animations d'apparition, bandeaux défilants, le
 assets/images/              → images, nommées par page (kit-…, collection-…, photo-…)
 assets/videos/              → vidéos (MP4 H.264, sans son)
 assets/fonts/               → police Inter
-_export-figma/              → export Figma d'origine de l'accueil (référence, peut être supprimé)
 ```
 
 ## Voir le site en local
