@@ -1,0 +1,23 @@
+{
+  "entries": {
+    "cmd-1791024072710": {
+      "key": "cmd-1791024072710",
+      "value": "{\"command\":\"python3 - <<'EOF'\\nf='mentions-legales.html'\\ns=open(f,encoding='utf-8').read()\\ns=s.replace('Hostinger International Ltd<br>','Hostinger International Limited<br>')\\ns=s.replace('[ADRESSE DU SIÈGE – À COMPLÉTER d’après les CGU ou la facture Hostinger]<br>','61 Lordou Vironos str., 6023 Larnaca, Chypre<br>\\\\n      E-mail : <a href=\\\"mailto:compliance@hostinger.com\\\">compliance@hostinger.com</a><br>')\\nopen(f,'w',encoding='utf-8').write(s)\\nprint(s.count('COMPLÉTER'))\\nEOF\\nsed -n 58,64p mentions-legales.html\",\"exitCode\":0,\"success\":true}",
+      "namespace": "commands",
+      "storedAt": "2026-10-03T10:41:12.710Z",
+      "lastAccessed": "2026-10-03T10:41:12.710Z",
+      "accessCount": 0,
+      "expiresAt": "2026-11-02T10:41:12.710Z"
+    },
+    "cmd-1791025709122": {
+      "key": "cmd-1791025709122",
+      "value": "{\"command\":\"python3 - <<'EOF'\\nold='<a href=\\\"mailto:morgane.vautravers@gmail.com\\\">morgane.vautravers@gmail.com</a>'\\nfor f in ['mentions-legales.html','confidentialite.html']:\\n    s=open(f,encoding='utf-8').read()\\n    n=s.count(old)\\n    open(f,'w',encoding='utf-8').write(s.replace(old,'[E-MAIL – À COMPLÉTER]'))\\n    print(f,n,open(f,encoding='utf-8').read().count('gmail'))\\nEOF\",\"exitCode\":0,\"success\":true}",
+      "namespace": "commands",
+      "storedAt": "2026-10-03T11:08:29.122Z",
+      "lastAccessed": "2026-10-03T11:08:29.122Z",
+      "accessCount": 0,
+      "expiresAt": "2026-11-02T11:08:29.122Z"
+    }
+  },
+  "version": "3.0.0"
+}

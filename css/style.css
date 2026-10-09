@@ -9,6 +9,7 @@
                    15. Cartes projet   16. Rangées d'images
                    17. Bandeaux défilants   18. Encadrés et points clés
                    19. Kits   20. Galerie photo   21. Mobile
+   Toutes les pages 22. Menu de navigation (déroulant, et « Menu » sur mobile)
    ========================================================================== */
 
 
@@ -188,14 +189,7 @@ a {
   object-fit: cover;
 }
 
-.site-nav {
-  display: flex;
-  gap: 32px;
-  font-size: 16px;
-  letter-spacing: -0.08px;
-  line-height: 1.45;
-  white-space: nowrap;
-}
+/* Le menu lui-même est décrit en section 22 */
 
 
 /* 7. Présentation (photo + texte d'accroche)
@@ -436,11 +430,6 @@ a {
     height: 60px;
   }
 
-  .site-nav {
-    gap: 16px;
-    font-size: 14px;
-  }
-
   .hero {
     flex-direction: column;
     gap: 32px;
@@ -514,8 +503,7 @@ a {
   line-height: 1.45;
 }
 
-.back-link:hover,
-.site-nav a:hover {
+.back-link:hover {
   color: var(--color-text);
   text-decoration: underline;
 }
@@ -1080,4 +1068,244 @@ a.project-card:hover .project-card__title {
     padding-top: 0;
     gap: 16px;
   }
+}
+
+
+/* 22. Menu de navigation — toutes les pages
+   La hiérarchie du site se lit dans le HTML : Galerie → catégories →
+   sous-pages de Stage. Sur ordinateur, les pages de la galerie s'affichent
+   au survol de « Galerie » (ou au clic sur la flèche). Sur mobile, tout le
+   menu est replié derrière le bouton « Menu ». Voir aussi js/main.js.
+   ========================================================================== */
+
+.site-header,
+.page-header {
+  position: relative;
+  z-index: 10;
+}
+
+.site-nav {
+  font-size: 16px;
+  letter-spacing: -0.08px;
+  line-height: 1.45;
+}
+
+.site-nav__menu {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  white-space: nowrap;
+}
+
+.site-nav a:hover,
+.site-nav a[aria-current="page"] {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Page en cours et ses rubriques parentes */
+.site-nav a[aria-current="page"],
+.site-nav a.is-active {
+  font-weight: 700;
+}
+
+/* Bouton « Menu » : visible seulement sur mobile */
+.site-nav__toggle {
+  display: none;
+}
+
+.site-nav button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  cursor: pointer;
+}
+
+/* « Galerie » et sa liste déroulante */
+.has-submenu {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  /* Zone de survol élargie pour atteindre la liste sans qu'elle se ferme */
+  padding-block: 12px;
+  margin-block: -12px;
+}
+
+.submenu-toggle {
+  width: 20px;
+  height: 20px;
+}
+
+/* Petite flèche vers le bas */
+.submenu-toggle::before {
+  content: "";
+  display: block;
+  width: 7px;
+  height: 7px;
+  margin: 3px auto 0;
+  border-right: 1.5px solid;
+  border-bottom: 1.5px solid;
+  transform: rotate(45deg);
+  transition: transform 0.2s;
+}
+
+.submenu-toggle[aria-expanded="true"]::before {
+  margin-top: 8px;
+  transform: rotate(-135deg);
+}
+
+.submenu {
+  position: absolute;
+  top: 100%;
+  right: -16px;
+  display: none;
+  min-width: 270px;
+  padding: 16px 20px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  background: var(--color-bg);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+}
+
+.has-submenu:hover > .submenu,
+.submenu-toggle[aria-expanded="true"] + .submenu,
+html:not(.js) .has-submenu:focus-within > .submenu {
+  display: block;
+}
+
+.submenu li {
+  padding-block: 4px;
+}
+
+.submenu a {
+  display: block;
+  color: var(--color-text-muted);
+}
+
+.submenu a:hover,
+.submenu a[aria-current="page"],
+.submenu a.is-active {
+  color: var(--color-text);
+}
+
+/* Sous-pages (Stage → Kits, Collection, Montage) : décalées avec un filet */
+.submenu ul {
+  margin: 4px 0 4px 2px;
+  padding-left: 14px;
+  border-left: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 700px) {
+  .site-nav__menu {
+    gap: 16px;
+    font-size: 14px;
+  }
+
+  /* Le bouton « Menu » n'est utile que si le script est chargé */
+  .js .site-nav__toggle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  /* Icône : trois traits, qui deviennent une croix quand le menu est ouvert */
+  .site-nav__toggle::before {
+    content: "";
+    width: 18px;
+    height: 2px;
+    background: currentColor;
+    box-shadow: 0 -6px 0 currentColor, 0 6px 0 currentColor;
+  }
+
+  .site-nav__toggle[aria-expanded="true"]::before {
+    box-shadow: none;
+    background:
+      linear-gradient(45deg, transparent 45%, currentColor 45% 55%, transparent 55%),
+      linear-gradient(-45deg, transparent 45%, currentColor 45% 55%, transparent 55%);
+    height: 18px;
+  }
+
+  /* Menu déplié : panneau sous l'en-tête, toutes les pages visibles */
+  .js .site-nav__menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+    max-height: calc(100vh - 100%);
+    overflow-y: auto;
+    padding: 24px var(--gutter-wide) 32px;
+    border-block: 1px solid rgba(0, 0, 0, 0.1);
+    background: var(--color-bg);
+    font-size: 18px;
+    white-space: normal;
+  }
+
+  .js .site-nav__toggle[aria-expanded="true"] + .site-nav__menu {
+    display: flex;
+  }
+
+  .js .has-submenu {
+    display: block;
+    padding: 0;
+    margin: 0;
+  }
+
+  .js .submenu-toggle {
+    display: none;
+  }
+
+  .js .submenu {
+    position: static;
+    display: block;
+    min-width: 0;
+    margin-top: 10px;
+    padding: 0 0 0 14px;
+    border: 0;
+    border-left: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 0;
+    box-shadow: none;
+  }
+}
+
+
+/* Pied de page et pages légales
+   ========================================================================== */
+
+.site-footer {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  padding: 40px var(--gutter-wide);
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
+
+.site-footer a:hover {
+  color: var(--color-text);
+  text-decoration: underline;
+}
+
+.legal {
+  width: min(800px, 100%);
+  margin-inline: auto;
+  padding-bottom: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.legal .title-sm {
+  margin-top: 24px;
+}
+
+.legal a {
+  text-decoration: underline;
 }

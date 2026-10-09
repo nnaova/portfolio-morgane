@@ -16,13 +16,15 @@ photos.html                 → Galerie photo + dessins sur photos
 bijoux-perso.html           → Création de bijoux perso
 design.html                 → Création et design digital
 contact.html                → Contact (CV)
+mentions-legales.html       → Mentions légales (à compléter)
+confidentialite.html        → Politique de confidentialité
 
 css/style.css               → toute la mise en forme (sections numérotées, sommaire en haut)
-js/main.js                  → animations d'apparition, bandeaux défilants, lecture des vidéos
+js/main.js                  → animations d'apparition, bandeaux défilants, lecture des vidéos,
+                              menu, retour à la position de lecture après « Précédent »
 assets/images/              → images, nommées par page (kit-…, collection-…, photo-…)
 assets/videos/              → vidéos (MP4 H.264, sans son)
 assets/fonts/               → police Inter
-_export-figma/              → export Figma d'origine de l'accueil (référence, peut être supprimé)
 ```
 
 ## Voir le site en local
@@ -83,6 +85,13 @@ ffmpeg -i source.mov -an -vf "scale=-2:1280" -c:v libx264 -crf 26 -movflags +fas
 ## Liens et hébergement
 
 Les pages se lient entre elles par leur nom de fichier (`stage.html`…), ce qui
-fonctionne partout, y compris en ouvrant les fichiers en local. L'en-tête de
-chaque page est écrit dans chaque fichier : pour ajouter un lien de menu, il
-faut le reporter sur toutes les pages.
+fonctionne partout, y compris en ouvrant les fichiers en local.
+
+**Menu** : chaque page a en en-tête le même menu, qui reprend la hiérarchie
+du site (Galerie → catégories → sous-pages de Stage). Sur ordinateur, la liste
+de la galerie s'ouvre au survol de « Galerie » ou au clic sur la flèche ; sur
+mobile, tout le menu s'ouvre avec le bouton « Menu ». Le menu est écrit dans
+chaque fichier : pour ajouter ou renommer une page, il faut reporter le
+changement sur toutes les pages. Sur chaque page, le lien de la page en cours
+porte `aria-current="page"` et ses rubriques parentes la classe `is-active`
+(affichés en gras). Style : section 22 de `css/style.css`.

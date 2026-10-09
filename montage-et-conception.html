@@ -14,7 +14,31 @@
 
   <header class="page-header">
     <a href="stage.html" class="back-link">Retour</a>
-    <nav class="site-nav"><a href="contact.html">Contact</a></nav>
+    <nav class="site-nav" aria-label="Menu principal">
+      <button class="site-nav__toggle" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+      <ul class="site-nav__menu" id="menu">
+        <li><a href="index.html">Accueil</a></li>
+        <li class="has-submenu">
+          <a href="index.html#galerie" class="is-active">Galerie</a>
+          <button class="submenu-toggle" type="button" aria-expanded="false" aria-controls="menu-galerie" aria-label="Afficher les pages de la galerie"></button>
+          <ul class="submenu" id="menu-galerie">
+            <li>
+              <a href="stage.html" class="is-active">Stage</a>
+              <ul>
+                <li><a href="kit.html">Kits créatifs</a></li>
+                <li><a href="collection.html">Création de collection</a></li>
+                <li><a href="montage-et-conception.html" aria-current="page">Montage</a></li>
+              </ul>
+            </li>
+            <li><a href="gouaches.html">Gouachés</a></li>
+            <li><a href="photos.html">Galerie photos / dessins</a></li>
+            <li><a href="bijoux-perso.html">Création bijou perso</a></li>
+            <li><a href="design.html">Création et design digital</a></li>
+          </ul>
+        </li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
   </header>
 
   <main class="container container--wide">
@@ -55,5 +79,9 @@
     </ul>
 
   </main>
+  <footer class="site-footer">
+    <a href="mentions-legales.html">Mentions légales</a>
+    <a href="confidentialite.html">Confidentialité</a>
+  </footer>
 </body>
 </html>
